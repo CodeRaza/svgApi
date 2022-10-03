@@ -2,25 +2,18 @@
   "name": "svg-text-conversion",
   "version": "1.0.0",
   "description": "",
-  "main": "web.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon web.js"
+    "server": "nodemon app.js",
+    "dev": "nodemon ./app.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.1",
-    "extract-svg-path": "^2.1.0",
-    "jsdom": "^20.0.0",
-    "nodemon": "^2.0.20",
-    "parse-svg-path": "^0.1.2",
-    "simple-svg-tools": "^1.1.12",
-    "svg-png-converter": "^0.0.9",
-    "svgpath": "^2.5.0",
-    "svgtofont": "^3.18.0",
-    "text-from-image": "^1.1.1",
-    "text-svg": "^1.0.4"
+    "nodemon": "^2.0.20"
   }
 }
