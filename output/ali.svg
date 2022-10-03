@@ -1,4 +1,4 @@
 <!--?xml version="1.0" standalone="no"?-->
-<svg xmlns="http://www.w3.org/2000/svg" id="svg" height="30" width="200">
-    <text id="text" x="0" y="15" fill="red">ali</text>
+<svg xmlns="http://www.w3.org/2000/svg" id="svg" style="border:solid 6px black;" height="30" width="200">
+    <text id="text" x="0" y="15" fill="#5008ff" font-family="monospace">Hello Bhai Whats Up</text>
 </svg>
