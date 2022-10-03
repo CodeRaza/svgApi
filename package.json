@@ -2,10 +2,10 @@
   "name": "svg-text-conversion",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "web.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon app.js"
+    "server": "nodemon web.js"
   },
   "author": "",
   "license": "ISC",
