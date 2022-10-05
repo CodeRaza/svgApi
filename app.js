@@ -54,6 +54,9 @@ app.get("/change_my_svg_text/", (req, res)=>{
             $(`#${layer.textID}`).text(`${layer.new_text}`)
             $(`#${layer.textID}`).attr('fill', `#${layer.color}`)
             $(`#${layer.textID}`).attr('font-family', layer.font)
+            if(layer.style){
+                $(`#${layer.textID}`).attr('style', `${layer.style}`)
+            }
         })
 
    
