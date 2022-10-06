@@ -7,14 +7,14 @@ var cheerio = require('cheerio');
 
 app.get("/preview_svg_sample", (req, res)=> {
 
-    fs.readFile(__dirname + '/svg/new.svg', 'utf8', (err, data) => {
+    fs.readFile(__dirname + '/svg/custom-svg-design-1.svg', 'utf8', (err, data) => {
 
         const $ = cheerio.load(`
             ${data}
         `
         , null, false);
 
-        const text_ids = $('*').get().filter(el => el.name == 'text' || el.name == "textPath").map(el => el.attribs.id)
+        const text_ids = $('*').get().filter(el => el.name == 'text' || el.name == "textPath" || el.name == "tspan").map(el => el.attribs.id)
        
         $('svg').append(`
             <br>
@@ -46,7 +46,7 @@ app.get("/change_my_svg_text/", (req, res)=>{
 
     if(!data) return res.send("Error...") 
     
-    fs.readFile(__dirname + '/svg/new.svg', 'utf8', (err, svg_data) => {
+    fs.readFile(__dirname + '/svg/custom-svg-design-1.svg', 'utf8', (err, svg_data) => {
         
         const $ = cheerio.load(`${svg_data}`, null, false);
 
@@ -62,10 +62,10 @@ app.get("/change_my_svg_text/", (req, res)=>{
    
         const content = $.html();
     
-        fs.writeFile(__dirname + `/output/sample.svg`, content, function (err) {
-            if (err) throw err;
-            console.log('Replaced!');
-        });
+        // fs.writeFile(__dirname + `/output/something_new.svg`, content, function (err) {
+        //     if (err) throw err;
+        //     console.log('Replaced!');
+        // });
 
         res.send(content)
     });

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Beth Ellen">@import url(https://fonts.googleapis.com/css2?family=Beth+Ellen%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
+    <style bx:fonts="Grand Hotel">@import url(https://fonts.googleapis.com/css2?family=Grand+Hotel%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
+    <filter id="drop-shadow-filter-0" color-interpolation-filters="sRGB" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="drop-shadow 1 10 10 0 0.5 rgba(0,0,0,0.3)">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0"/>
+      <feOffset dx="10" dy="10"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="1"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(0,0,0,0.3)"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <text style="fill: rgb(51, 51, 51); font-family: &quot;Beth Ellen&quot;; font-size: 19.4px; font-weight: 700; white-space: pre;" transform="matrix(2.412182, 0, 0, 4.322581, -375.655762, -629.904419)" x="202.083" y="206.944"> </text>
+  <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 19.4px; font-style: italic; white-space: pre;" x="242.361" y="244.444"> </text>
+  <text style="fill: rgb(51, 51, 51); font-family: &quot;Grand Hotel&quot;; font-size: 50px; white-space: pre; opacity: 0.87;" x="42.445" y="-6.167"><tspan id="main" x="137.11" y="240.513" style="filter: url(#drop-shadow-filter-0); font-size: 50px; word-spacing: 0px;">Alabama</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 19.4px;" x="275.694" y="246.451"> </text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 7.4px;" x="230.044" y="230.486"> </text>
+</svg>
