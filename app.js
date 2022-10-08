@@ -5,9 +5,31 @@ const port = process.env.PORT || 3000;
 const fs = require("fs");
 var cheerio = require('cheerio');
 
-app.get("/preview_svg_sample", (req, res)=> {
+app.get("/list_svg", (req, res) => {
 
-    fs.readFile(__dirname + '/svg/custom-svg-design-1.svg', 'utf8', (err, data) => {
+    var htmltext = '<h1>All SVGs</h1>';
+
+    fs.readdirSync(
+        __dirname + `/svg/`
+    ).forEach(file => {
+        htmltext += `
+            <a href=/preview_svg_sample/${file}>${file}</a>
+            <br>
+        `
+    });
+
+    res.send(htmltext)
+})
+
+app.get("/preview_svg_sample/:name", (req, res)=> {
+
+    const file_name = req.params.name;
+
+    fs.readFile(__dirname + `/svg/${file_name}`, 'utf8', (err, data) => {
+
+        if(err){
+            return res.send("File Not Found!");
+        }
 
         const $ = cheerio.load(`
             ${data}
@@ -30,11 +52,6 @@ app.get("/preview_svg_sample", (req, res)=> {
         const content = $.html()
 
         res.send(content)
-        
-        // res.json({
-        //     content: content,
-        //     text_ids: text_ids
-        // })
     });
 
 })
@@ -48,6 +65,10 @@ app.get("/change_my_svg_text/", (req, res)=>{
     
     fs.readFile(__dirname + '/svg/custom-svg-design-1.svg', 'utf8', (err, svg_data) => {
         
+        if(err){
+            return res.send("File Not Found!");
+        }
+
         const $ = cheerio.load(`${svg_data}`, null, false);
 
         data.map((layer, index)=>{
@@ -58,7 +79,6 @@ app.get("/change_my_svg_text/", (req, res)=>{
                 $(`#${layer.textID}`).attr('style', `${layer.style}`)
             }
         })
-
    
         const content = $.html();
     
@@ -74,7 +94,8 @@ app.get("/change_my_svg_text/", (req, res)=>{
 app.use((req, res)=>{
     res.json({
         "status": 404,
-        "Go to Preview SVG": "/preview_svg_sample",
+        "List All SVGs": "/list_svg",
+        "Go to Preview SVG": "/preview_svg_sample/file_name",
         "Modify SVG": "/change_my_svg_text"
     })
 })

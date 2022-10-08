@@ -1,6 +1,0 @@
-<!--?xml version="1.0" standalone="no"?-->
-<svg xmlns="http://www.w3.org/2000/svg" id="svg" style="border:solid 2px black;" height="45" width="200">
-    <text id="heading" x="50" y="15" fill="blue" font-family="monospace">Heeeeee!</text>
-    <text id="outline" x="50" y="27" font-size="0.6em" fill="green" font-family="verdana">I LOVE CODE</text>
-    <text id="extra_text" x="50" y="39" font-size="0.6em" fill="red" font-family="">PHP HATER</text>
-</svg>
