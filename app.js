@@ -60,10 +60,12 @@ app.get("/preview_svg_sample/:name", (req, res)=> {
 app.get("/change_my_svg_text/", (req, res)=>{
 
     const data = JSON.parse(req.query['data'])
+    const file = req.query['file']
 
     if(!data) return res.send("Error...") 
-    
-    fs.readFile(__dirname + '/svg/custom-svg-design-1.svg', 'utf8', (err, svg_data) => {
+    if(!file) return res.send("PLEASE ENTER FILE NAME")
+
+    fs.readFile(__dirname + `/svg/${file}`, 'utf8', (err, svg_data) => {
         
         if(err){
             return res.send("File Not Found!");
