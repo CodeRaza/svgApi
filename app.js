@@ -36,7 +36,7 @@ app.get("/preview_svg_sample/:name", (req, res)=> {
         `
         , null, false);
 
-        const text_ids = $('*').get().filter(el => el.name == 'text' || el.name == "textPath" || el.name == "tspan").map(el => el.attribs.id)
+        const text_ids = $('*').get().filter(el => el.name == 'text' || el.name == "textPath" || el.name == "tspan" || el.name == 'path').map(el => `${el.name} = ${el.attribs.id}`)
        
         $('svg').append(`
             <br>
@@ -62,8 +62,11 @@ app.get("/change_my_svg_text/", (req, res)=>{
     const data = JSON.parse(req.query['data'])
     const file = req.query['file']
 
+    console.log(data[0].bg_image);
+
     if(!data) return res.send("Error...") 
     if(!file) return res.send("PLEASE ENTER FILE NAME")
+
 
     fs.readFile(__dirname + `/svg/${file}`, 'utf8', (err, svg_data) => {
         
@@ -71,11 +74,23 @@ app.get("/change_my_svg_text/", (req, res)=>{
             return res.send("File Not Found!");
         }
 
-        const $ = cheerio.load(`${svg_data}`, null, false);
+        const $ = cheerio.load(`
+            ${svg_data}`
+        , {
+            xmlMode: true,
+          });
 
         data.map((layer, index)=>{
-            $(`#${layer.textID}`).text(`${layer.new_text}`)
-            $(`#${layer.textID}`).attr('fill', `#${layer.color}`)
+            // $(`#${layer.textID}`).text(`${layer.new_text}`)
+            if(layer.bg_image){
+                $(`svg`).prepend(`<defs>
+                    <pattern id="img${index}" patternUnits="userSpaceOnUse" width="100" height="100">
+                        <image href=${layer.bg_image} x="0" y="0" width="100" height="100" />
+                    </pattern>
+                </defs>`);
+                $(`#${layer.textID}`).attr('fill', `url(#img${index})`)
+            }
+            // $(`#${layer.textID}`).attr('fill', `#${layer.color}`)
             $(`#${layer.textID}`).attr('font-family', layer.font)
             if(layer.style){
                 $(`#${layer.textID}`).attr('style', `${layer.style}`)
